@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "112332296923",
+    "project_id": "chatcompresion",
+    "storage_bucket": "chatcompresion.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:112332296923:android:745b8a05d75c1eea9c72fe",
+        "android_client_info": {
+          "package_name": "com.example.chatcompresion"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "112332296923-bi0eqcpsr5smod2cua2d16b521352s7r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2cK9l5rGJrPO51hBSU309Npd5a--EtNM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "112332296923-bi0eqcpsr5smod2cua2d16b521352s7r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
