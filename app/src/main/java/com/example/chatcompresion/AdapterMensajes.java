@@ -45,16 +45,16 @@ public class AdapterMensajes extends RecyclerView.Adapter<HolderMensaje> {
     public void onBindViewHolder(@NonNull HolderMensaje holder, int position) {
 
         holder.getNombre().setText(listMensaje.get(position).getNombre());
-        holder.getMensaje().setText(listMensaje.get(position).getMensaje());
 
         if(listMensaje.get(position).getType_mensaje().equals("2")){
 
             holder.getFotoMensaje().setVisibility(View.VISIBLE);
             holder.getMensaje().setVisibility(View.VISIBLE);
-            Glide.with(c).load(listMensaje.get(position).getUrlFoto()).into(holder.getFotoMensaje());
+            holder.getFotoMensaje().setImageBitmap(listMensaje.get(position).getBitmap());
 
         } else if (listMensaje.get(position).getType_mensaje().equals("1")){
 
+            holder.getMensaje().setText(listMensaje.get(position).getMensaje1());
             holder.getFotoMensaje().setVisibility(View.GONE);
             holder.getMensaje().setVisibility(View.VISIBLE);
 
@@ -70,7 +70,7 @@ public class AdapterMensajes extends RecyclerView.Adapter<HolderMensaje> {
 
         }
 
-        Map<String, Integer> freq = listMensaje.get(position).getFreq();
+        Map<String, Integer> freq = listMensaje.get(position).getFreq1();
 
         Long codigoHora = listMensaje.get(position).getHora();
 

@@ -1,27 +1,20 @@
 package com.example.chatcompresion;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
-
-import Huffman.Nodo;
 
 public class MensajeRecibir extends Mensaje {
 
     private Long hora;
-    private Map<String, Integer> freq;
 
-    public MensajeRecibir() {
-    }
+    public MensajeRecibir() {}
 
     public MensajeRecibir(Long hora) {
         this.hora = hora;
     }
 
-    public MensajeRecibir(String mensaje, String urlFoto, String nombre, String fotoPerfil, String type_mensaje, Long hora , Map<String, Integer> freq) {
-        super(mensaje, urlFoto, nombre, fotoPerfil, type_mensaje, freq);
+    public MensajeRecibir(String cadenaRojo , String cadenaVerde, String cadenaAzul, String nombre, String fotoPerfil, String type_mensaje, Long hora , Map<String,Integer> freqRoja , Map<String, Integer> freqVerde, Map<String, Integer> freqAzul , int ancho, int alto) {
+        super(cadenaRojo, cadenaVerde, cadenaAzul, nombre, fotoPerfil, type_mensaje, freqRoja, freqVerde, freqAzul, ancho, alto);
         this.hora = hora;
-        this.freq = freq;
     }
 
     public Long getHora() {
@@ -31,5 +24,4 @@ public class MensajeRecibir extends Mensaje {
     public void setHora(Long hora) {
         this.hora = hora;
     }
-
 }

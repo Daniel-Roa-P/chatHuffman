@@ -20,8 +20,8 @@ public class MensajeEnviar extends Mensaje {
         this.hora = hora;
     }
 
-    public MensajeEnviar(String mensaje, String urlFoto, String nombre, String fotoPerfil, String type_mensaje, Map hora, Map<String, Integer> freq) {
-        super(mensaje, urlFoto, nombre, fotoPerfil, type_mensaje, freq);
+    public MensajeEnviar(String cadenaRojo , String cadenaVerde, String cadenaAzul, String nombre, String fotoPerfil, String type_mensaje, Map hora , Map<String,Integer> freqRoja , Map<String, Integer> freqVerde,  Map<String, Integer> freqAzul , int ancho, int alto) {
+        super(cadenaRojo, cadenaVerde, cadenaAzul, nombre, fotoPerfil, type_mensaje, freqRoja, freqVerde, freqAzul, ancho, alto);
         this.hora = hora;
     }
 
