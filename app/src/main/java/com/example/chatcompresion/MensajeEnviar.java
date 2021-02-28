@@ -15,13 +15,13 @@ public class MensajeEnviar extends Mensaje {
         this.hora = hora;
     }
 
-    public MensajeEnviar(String mensaje, String nombre, String fotoPerfil, String type_mensaje, Map hora, List<String> letras, List<Integer> frecuencias) {
-        super(mensaje, nombre, fotoPerfil, type_mensaje, letras, frecuencias);
+    public MensajeEnviar(String mensaje, String nombre, String fotoPerfil, String type_mensaje, Map hora, Map<String, Integer> freq) {
+        super(mensaje, nombre, fotoPerfil, type_mensaje, freq);
         this.hora = hora;
     }
 
-    public MensajeEnviar(String mensaje, String urlFoto, String nombre, String fotoPerfil, String type_mensaje, Map hora, List<String> letras, List<Integer> frecuencias) {
-        super(mensaje, urlFoto, nombre, fotoPerfil, type_mensaje, letras, frecuencias);
+    public MensajeEnviar(String mensaje, String urlFoto, String nombre, String fotoPerfil, String type_mensaje, Map hora, Map<String, Integer> freq) {
+        super(mensaje, urlFoto, nombre, fotoPerfil, type_mensaje, freq);
         this.hora = hora;
     }
 

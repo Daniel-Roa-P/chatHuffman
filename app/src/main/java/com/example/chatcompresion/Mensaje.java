@@ -2,6 +2,7 @@ package com.example.chatcompresion;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import Huffman.Nodo;
 
@@ -12,32 +13,29 @@ public class Mensaje {
     private String nombre;
     private String fotoPerfil;
     private String type_mensaje;
-    private List<String> letras;
-    private List<Integer> frecuencias;
+    private  Map<String, Integer> freq;
 
 
     public Mensaje() {}
 
-    public Mensaje(String mensaje, String nombre, String fotoPerfil, String type_mensaje , List<String> letras, List<Integer> frecuencias) {
+    public Mensaje(String mensaje, String nombre, String fotoPerfil, String type_mensaje , Map<String, Integer> freq) {
 
         this.mensaje = mensaje;
         this.nombre = nombre;
         this.fotoPerfil = fotoPerfil;
         this.type_mensaje = type_mensaje;
-        this.letras = letras;
-        this.frecuencias = frecuencias;
+        this.freq = freq;
 
     }
 
-    public Mensaje(String mensaje, String urlFoto, String nombre, String fotoPerfil, String type_mensaje, List<String> letras , List<Integer> frecuencias) {
+    public Mensaje(String mensaje, String urlFoto, String nombre, String fotoPerfil, String type_mensaje, Map<String, Integer> freq) {
 
         this.mensaje = mensaje;
         this.urlFoto = urlFoto;
         this.nombre = nombre;
         this.fotoPerfil = fotoPerfil;
         this.type_mensaje = type_mensaje;
-        this.letras = letras;
-        this.frecuencias = frecuencias;
+        this.freq = freq;
 
     }
 
@@ -81,12 +79,7 @@ public class Mensaje {
         this.urlFoto = urlFoto;
     }
 
-    public List<String> getLetras() { return letras; }
+    public Map<String, Integer> getFreq() { return freq; }
 
-    public void setLetras(List<String> letras) { this.letras = letras; }
-
-    public List<Integer> getFrecuencias() { return frecuencias; }
-
-    public void setFrecuencias(List<Integer> frecuencias) { this.frecuencias = frecuencias; }
-
+    public void setFreq(Map<String, Integer> freq) { this.freq = freq; }
 }

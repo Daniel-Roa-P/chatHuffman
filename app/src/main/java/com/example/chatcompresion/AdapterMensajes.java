@@ -11,6 +11,7 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -69,7 +70,7 @@ public class AdapterMensajes extends RecyclerView.Adapter<HolderMensaje> {
 
         }
 
-        List<String> letras = listMensaje.get(position).getLetras();
+        Map<String, Integer> freq = listMensaje.get(position).getFreq();
 
         Long codigoHora = listMensaje.get(position).getHora();
 

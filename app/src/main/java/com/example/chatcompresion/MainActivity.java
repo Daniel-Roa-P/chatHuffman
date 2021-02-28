@@ -1,15 +1,21 @@
 package com.example.chatcompresion;
 
 import Huffman.Encriptado;
+import Huffman.Huffman;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -29,6 +35,10 @@ import com.google.firebase.database.ServerValue;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+
+import java.nio.ByteBuffer;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -76,16 +86,20 @@ public class MainActivity extends AppCompatActivity {
 
         btnEnviar.setOnClickListener(new View.OnClickListener() {
 
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View v) {
 
-                Encriptado e = new Encriptado();
+                System.out.println("Enviar");
 
-                e.crearMatriz(txtMensajes.getText().toString());
+                Huffman h = new Huffman();
+                h.crearDiccionario(txtMensajes.getText().toString());
+                Map<String, Integer> map = new TreeMap<String, Integer>(h.getFreq());
+                h.setFreq(map);
+                h.contruirArbol();
+                h.crearCodigo();
 
-                e.desencriptar();
-
-                databaseReference.push().setValue( new MensajeEnviar(e.getCadenaNueva(), nombre.getText().toString(), fotoPerfilCadena, "1", ServerValue.TIMESTAMP, e.getLetras(), e.getCopiaFrecuencias() ));
+                databaseReference.push().setValue( new MensajeEnviar(h.getCadenaNueva(), nombre.getText().toString(), fotoPerfilCadena, "1", ServerValue.TIMESTAMP, map ));
                 txtMensajes.setText("");
 
             }
@@ -126,21 +140,20 @@ public class MainActivity extends AppCompatActivity {
 
         databaseReference.addChildEventListener(new ChildEventListener() {
 
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
+                System.out.println("Recibir");
+
                 MensajeRecibir m = snapshot.getValue(MensajeRecibir.class);
-
-                Encriptado e = new Encriptado();
-
-                e.crearArbol(m.getFrecuencias(), m.getLetras());
-
-                e.setCadenaNueva(m.getMensaje() + "1");
-
-
-                e.desencriptar();
-
-                m.setMensaje(e.getCadenaDeco());
+                Huffman h = new Huffman();
+                Map<String, Integer> map = new TreeMap<String, Integer>(m.getFreq());
+                h.setFreq(map);
+                h.contruirArbol();
+                h.setCadenaNueva(m.getMensaje() + "1");
+                h.decodificar();
+                m.setMensaje(h.getCadenaDeco());
 
                 adapter.addMensaje(m);
 
@@ -195,7 +208,14 @@ public class MainActivity extends AppCompatActivity {
                             result.addOnSuccessListener(new OnSuccessListener<Uri>() {
                                 @Override
                                 public void onSuccess(Uri uri) {
-                                    MensajeEnviar m = new MensajeEnviar("Kevin te ha enviado una foto", uri.toString(), nombre.getText().toString(),fotoPerfilCadena,"2", ServerValue.TIMESTAMP, null, null);
+
+                                    //Image image = reader.acquireLatestImage();
+                                    //ByteBuffer buffer = image.getPlanes()[0].getBuffer();
+                                    //byte[] bytes = new byte[buffer.capacity()];
+                                    //buffer.get(bytes);
+                                    //Bitmap bitmapImage = BitmapFactory.decodeByteArray(bytes, 0, bytes.length, null);
+
+                                    MensajeEnviar m = new MensajeEnviar("Kevin te ha enviado una foto", uri.toString(), nombre.getText().toString(),fotoPerfilCadena,"2", ServerValue.TIMESTAMP, null);
                                     databaseReference.push().setValue(m);
                                 }
                             });
@@ -222,7 +242,7 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(Uri uri) {
                                     fotoPerfilCadena = uri.toString();
-                                    MensajeEnviar m = new MensajeEnviar("Kevin te ha actualizado su foto de perfil", uri.toString(), nombre.getText().toString(),fotoPerfilCadena,"2", ServerValue.TIMESTAMP, null, null);
+                                    MensajeEnviar m = new MensajeEnviar("Kevin te ha actualizado su foto de perfil", uri.toString(), nombre.getText().toString(),fotoPerfilCadena,"2", ServerValue.TIMESTAMP, null);
                                     databaseReference.push().setValue(m);
                                     Glide.with(MainActivity.this).load(u.toString()).into(fotoPerfil);
                                 }
