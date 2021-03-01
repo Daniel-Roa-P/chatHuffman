@@ -7,8 +7,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="5sp"
-    tools:context=".MainActivity"
-    android:orientation="vertical">
+    tools:context=".Activity.MainActivity"
+    android:orientation="vertical"
+    android:screenOrientation="portrait">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,7 +20,7 @@
             android:id="@+id/fotoPerfil"
             android:layout_width="48sp"
             android:layout_height="48sp"
-            android:src="@mipmap/ic_launcher">
+            android:src="@android:drawable/ic_menu_myplaces">
 
         </de.hdodenhof.circleimageview.CircleImageView>
 
@@ -27,10 +28,25 @@
             android:id="@+id/nombre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Kevin"
+            android:text=""
             android:layout_gravity="center">
 
         </TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end|center">
+
+            <Button
+                android:id="@+id/cerrarSesion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Cerrar Sesión">
+
+            </Button>
+
+        </LinearLayout>
 
     </LinearLayout>
 

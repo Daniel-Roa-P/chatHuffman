@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
+import com.example.chatcompresion.Entidades.MensajeRecibir;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
@@ -57,16 +58,6 @@ public class AdapterMensajes extends RecyclerView.Adapter<HolderMensaje> {
             holder.getMensaje().setText(listMensaje.get(position).getMensaje1());
             holder.getFotoMensaje().setVisibility(View.GONE);
             holder.getMensaje().setVisibility(View.VISIBLE);
-
-        }
-
-        if(listMensaje.get(position).getFotoPerfil().isEmpty()){
-
-            holder.getFotoMensajePerfil().setImageResource(R.mipmap.ic_launcher);
-
-        } else {
-
-            Glide.with(c).load(listMensaje.get(position).getFotoPerfil()).into(holder.getFotoMensajePerfil());
 
         }
 

@@ -1,4 +1,4 @@
-package com.example.chatcompresion;
+package com.example.chatcompresion.Entidades;
 
 import android.graphics.Bitmap;
 

@@ -1,4 +1,6 @@
-package com.example.chatcompresion;
+package com.example.chatcompresion.Entidades;
+
+import com.example.chatcompresion.Entidades.Mensaje;
 
 import java.util.Map;
 
